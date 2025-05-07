@@ -1,0 +1,310 @@
+/* === Common Layout === */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Games List Page (games.ejs) === */
+.games-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.game-card {
+  max-width: 300px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.game-cover img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.game-info {
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.game-info h2 {
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.game-desc {
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.developer-info {
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  background-color: #fff;
+}
+
+.dev-logo {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.dev-desc {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* === Single Game Page (game.ejs) === */
+.single-game-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.game-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.cover-img {
+  width: 280px;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.header-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header-info h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.header-info p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+}
+
+.game-description {
+  margin-top: 1.5rem;
+}
+
+.game-description h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.game-description p {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #333;
+}
+
+.developer-info h3 {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.dev-logo {
+  width: 150px;
+  height: auto;
+  margin-top: 1rem;
+}
+
+/* === Buttons === */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.4rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.edit-btn:hover {
+  background-color: #0056b3;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #a7282f;
+}
+
+/* navbar.css */
+.navbar {
+  background-color: #333;
+  padding: 1rem;
+  color: white;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.logo-img {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar-links li {
+  display: inline-block;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar-links a:hover {
+  color: #007bff;
+}
+
+.navbar-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  color: white;
+  background-color: #007bff;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.login-btn {
+  background-color: #28a745;
+}
+
+.login-btn:hover {
+  background-color: #218838;
+}
+
+.register-btn {
+  background-color: #dc3545;
+}
+
+.register-btn:hover {
+  background-color: #c82333;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+select[multiple] {
+  height: 120px;
+}
+
+button {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+select[multiple] {
+  height: 150px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  color: rebeccapurpled;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('navbar') %>
+    <%- include("error.ejs") %>
+    
+    <div class="form-container">
+        <h2><%= gameId ? 'Edit Game' : 'Add New Game' %></h2>
+        
+        <form action="<%= gameId ? '/game/edit/' + gameId : '/game/create' %>" method="POST">
+            
+            <!-- Title -->
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" value="<%= formData?.title || '' %>" required>
+            
+            <!-- Release Date -->
+            <label for="release_date">Release Date</label>
+            <input type="date" name="release_date" id="release_date" value="<%= formData?.release_date || '' %>">
+
+            <!-- Completed Date -->
+            <label for="completed_date">Completed Date</label>
+            <input type="date" name="completed_date" id="completed_date" value="<%= formData?.completed_date || '' %>">
+
+            <!-- Rating -->
+            <label for="rating">Rating (e.g. 8.5)</label>
+            <input type="number" step="0.1" min="0" max="10" name="rating" id="rating" value="<%= formData?.rating || '' %>">
+
+            <!-- Status -->
+            <label for="status">Status</label>
+            <select name="status" id="status">
+                <option value="Planned" <%= formData?.status === 'Planned' ? 'selected' : '' %>>Planned</option>
+                <option value="In Progress" <%= formData?.status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+                <option value="Completed" <%= formData?.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+            </select>
+
+            <!-- Developer -->
+            <label for="developer_id">Developer</label>
+            <select name="developer_id" id="developer_id" required>
+                <% developers.forEach(dev => { %>
+                    <option value="<%= dev.developer_id %>" <%= formData?.developer_id === dev.developer_id ? 'selected' : '' %>><%= dev.name %></option>
+                <% }) %>
+            </select>
+
+            <!-- Description -->
+            <label for="description">Description</label>
+            <textarea name="description" id="description" rows="4"><%= formData?.game_description || formData?.description || '' %></textarea>
+
+            <!-- Cover Image URL -->
+            <label for="cover_page_url">Cover Image URL</label>
+            <input type="url" name="cover_page_url" id="cover_page_url" value="<%= formData?.cover_page_url || '' %>">
+
+            <!-- Genres -->
+            <label for="genres">Genres (If multiple select with Ctrl + click)</label>
+            <select name="genres[]" id="genres" multiple>
+                <% genres.forEach(g => { %>
+                    <option value="<%= g.genre_id %>" <%= formData?.genres?.includes(g.genre_name) || formData?.genres?.includes(g.genre_id) ? 'selected' : '' %>><%= g.genre_name %></option>
+                <% }) %>
+            </select>
+
+            <!-- Platforms -->
+            <label for="platforms">Platforms (If multiple select with Ctrl + click)</label>
+            <select name="platforms[]" id="platforms" multiple>
+                <% platforms.forEach(p => { %>
+                    <option value="<%= p.platform_id %>" <%= formData?.platforms?.includes(p.platform_name) || formData?.platforms?.includes(p.platform_id) ? 'selected' : '' %>><%= p.platform_name %></option>
+                <% }) %>
+            </select>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn primary-btn"><%= gameId ? 'Update Game' : 'Add Game' %></button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= game.title %></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('navbar') %>
+    <div class="single-game-container">
+        <div class="single-game-card">
+          <div class="game-header">
+            <img src="<%= game.cover_page_url %>" alt="<%= game.title %> Cover" class="cover-img">
+            <div class="header-info">
+              <h1><%= game.title %></h1>
+              <p><strong>Genres:</strong> <%= game.genres %></p>
+              <p><strong>Platforms:</strong> <%= game.platforms %></p>
+              <p><strong>Rating:</strong> <%= game.rating %> ⭐</p>
+              <p><strong>Status:</strong> <%= game.status %></p>
+              <p><strong>Completed on:</strong> 
+                <%= game.completed_date ? new Date(game.completed_date).toLocaleDateString() : 'Not Completed Yet' %>
+              </p>
+              <p><strong>Release Date:</strong> <%= new Date(game.release_date).toLocaleDateString() %></p>
+      
+              <div class="action-buttons">
+                <a href="/game/edit/<%= game.game_id %>" class="btn edit-btn">Edit</a>
+                <form action="/game/delete/<%= game.game_id %>" method="POST" onsubmit="return confirm('Are you sure?');">
+                  <button type="submit" class="btn delete-btn">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+      
+          <div class="game-description">
+            <h3>About the Game</h3>
+            <p><%= game.game_description %></p>
+          </div>
+      
+          <div class="developer-info">
+            <img src="<%= game.logo_url %>" alt="<%= game.name %> Logo" class="dev-logo">
+            <h3>Developer: <%= game.name %> (<%= game.country %>)</h3>
+            <p><%= game.developer_description %></p>
+          </div>
+        </div>
+      </div>      
+</body>
+</html>
