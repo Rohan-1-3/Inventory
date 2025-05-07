@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= developer.name %> Details</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1><%= developer.name %></h1>
+  <img src="<%= developer.logo_url %>" alt="<%= developer.name %> logo" width="100" />
+  <p><strong>Country:</strong> <%= developer.country || 'Unknown' %></p>
+  <p><strong>Description:</strong> <%= developer.description || 'No description' %></p>
+  <div class="action-buttons">
+    <a href="/developer/edit/<%= developer.developer_id %>" class="edit-btn">Edit</a>
+    <form action="/developer/delete/<%= developer.developer_id %>" method="POST" class="delete-form">
+        <button type="submit" class="delete-btn">Delete</button>
+    </form>
+    </li>
+  </div>
+  <a href="/developers">Back to list</a>
+
+</body>
+</html>

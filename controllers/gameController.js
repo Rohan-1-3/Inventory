@@ -23,18 +23,20 @@ const gameRouterGet = expressAsyncHandler(async(req, res)=>{
             title: "", 
             message: "Game not found" });
     }
-    res.status(200).render("game", { game });
+    res.status(200).render("gameviews/game", { game });
 })
 
 const gameRouterCreateGet = expressAsyncHandler(async(req, res)=>{
     const developers = await getAllDevelopers();
     const genres = await getAllGenres();
     const platforms = await getAllPlatforms();
-    res.status(200).render("newGameForm", {
+    res.status(200).render("gameviews/newGameForm", {
         title: "New Game Form",
         developers: developers,
         genres: genres,
-        platforms: platforms
+        platforms: platforms,
+        gameId: null,
+        formData: null
     })
 })
 
@@ -46,7 +48,7 @@ const gameRouterCreatePost = [
         const platforms = await getAllPlatforms();
         const errors = validationResult(req)
         if(!errors.isEmpty()){
-            return res.status(400).render("newGameForm", {
+            return res.status(400).render("gameviews/newGameForm", {
                 title: "New Game Form",
                 developers: developers,
                 genres: genres,
@@ -66,7 +68,7 @@ const gameRouterEditGet = expressAsyncHandler(async(req, res)=>{
     const platforms = await getAllPlatforms();
     const game = await getAGame(req.params.game_id)
     console.log(game)
-    res.status(200).render("newGameForm", {
+    res.status(200).render("gameviews/newGameForm", {
         title: "Edit Game Form",
         developers: developers,
         genres: genres,
@@ -85,7 +87,7 @@ const gameRouterEditPost = [
         const errors = validationResult(req)
         console.log(req.body)
         if(!errors.isEmpty()){
-            return res.status(400).render("newGameForm", {
+            return res.status(400).render("gameviews/newGameForm", {
                 title: "Edit Game Form",
                 developers: developers,
                 genres: genres,

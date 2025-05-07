@@ -4,6 +4,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { appRouter } from "./routers/appRouter.js";
 import { gameRouter } from "./routers/gameRouter.js";
+import { developerRouter } from "./routers/developerRouter.js";
+import { genreRouter } from "./routers/genreRouter.js";
+import { platformRouter } from "./routers/platformRouter.js";
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -21,6 +24,9 @@ app.use(express.urlencoded({extended: true}));
 
 app.use("/", appRouter);
 app.use("/game", gameRouter);
+app.use("/developer", developerRouter);
+app.use("/genre", genreRouter);
+app.use("/platform", platformRouter);
 
 app.use((req, res)=>{
     res.status(404).render("notFound",{

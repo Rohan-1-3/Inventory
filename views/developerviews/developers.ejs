@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>All Developers</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <% if(errorMessage){ %>
+        <div class="error-message"><%= errorMessage %></div>
+    <% } %>
+    <h1>All Developers</h1>
+    <ul class="developer-list">
+      <% developers.forEach(function(dev) { %>
+        <li class="developer-item">
+          <img src="<%= dev.logo_url %>" alt="<%= dev.name %> logo" class="developer-logo" />
+          <div class="developer-info">
+            <strong>
+              <a href="/developer/<%= dev.developer_id %>" class="developer-link">
+                <%= dev.name %>
+              </a>
+            </strong>
+            <span class="developer-country">– <%= dev.country || 'Unknown' %></span>
+          </div>
+          <div class="action-buttons">
+            <a href="/developer/edit/<%= dev.developer_id %>" class="edit-btn">Edit</a>
+            <form action="/developer/delete/<%= dev.developer_id %>" method="POST" class="delete-form">
+                <button type="submit" class="delete-btn">Delete</button>
+            </form>
+            </li>
+          </div>
+      <% }); %>
+    </ul>    
+  <div class="action-buttons">
+    <a href="/developer/create"><button class="btn">Add New Developer</button></a>
+  </div>
+</body>
+</html>

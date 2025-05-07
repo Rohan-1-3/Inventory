@@ -143,4 +143,37 @@ const deleteAGame = async(id)=>{
     await pool.query("DELETE FROM games WHERE game_id = $1",[id]);
 }
 
-export { getAllDevelopers, getAllGenres, getAllPlatforms, getAllGames, getAGame, addAGame, updateAGame, deleteAGame };
+const getADeveloper = async(id)=>{
+    const { rows } = await pool.query("SELECT * FROM developers WHERE developer_id = $1", [id]);
+    return rows[0];
+}
+
+const addADeveloper = async({ name, country, description, logo_url })=>{
+    const developerId = uuid();
+
+    await pool.query(`INSERT INTO developers 
+                      (developer_id, name, country, description, logo_url)
+                      VALUES ($1, $2, $3, $4)`, [name, country, description, logo_url]);
+
+    return developerId;
+}
+
+const updateADeveloper = async(id, data)=>{
+    const { name, country, description, logo_url } = data;
+    await pool.query(`UPDATE developers d
+        SET name = $1, country = $2, description = $3, logo_url = $4
+        WHERE d.developer_id = $5`,[ name, country, description, logo_url, id ]);
+}
+
+const deleteDeveloper = async(id) =>{
+    try{
+        await pool.query("DELETE FROM developers WHERE developer_id = $1", [id]);
+    }catch(err){
+        return err.code;
+    }
+    return null
+}
+
+export { getAllDevelopers, getAllGenres, getAllPlatforms, getAllGames, 
+         getAGame, addAGame, updateAGame, deleteAGame,
+         getADeveloper, addADeveloper, updateADeveloper, deleteDeveloper };

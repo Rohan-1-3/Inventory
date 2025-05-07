@@ -9,10 +9,6 @@
 <body>
     <%- include('navbar') %>
     <h1><%= title %></h1>
-    <% if(games){%>
-        <%- include('games', {games: games}) %>
-    <% }else{ %>
-        <%- include('homepage') %>
-    <% } %> 
+    <%- include('homepage') %>
 </body>
 </html>
