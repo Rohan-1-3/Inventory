@@ -153,7 +153,7 @@ const addADeveloper = async({ name, country, description, logo_url })=>{
 
     await pool.query(`INSERT INTO developers 
                       (developer_id, name, country, description, logo_url)
-                      VALUES ($1, $2, $3, $4)`, [name, country, description, logo_url]);
+                      VALUES ($1, $2, $3, $4, $5)`, [developerId, name, country, description, logo_url]);
 
     return developerId;
 }
@@ -174,6 +174,56 @@ const deleteDeveloper = async(id) =>{
     return null
 }
 
+const getAGenre = async(id)=>{
+    const { rows } = await pool.query("SELECT * FROM genres WHERE genre_id = $1",[id]);
+    return rows[0];
+}
+
+const addAGenre = async(name)=>{
+    const genreId = uuid();
+
+    await pool.query(`INSERT INTO genres (genre_id, genre_name)
+                      VALUES ($1, $2)`,[genreId, name])
+    return genreId;
+}
+
+const updateGenre = async(id,name)=>{
+    await pool.query(`UPDATE genres SET
+                      genre_name = $1 WHERE genre_id = $2`,[name, id])
+}
+
+const deleteAGenre = async(id)=>{
+    await pool.query(`DELETE FROM gamegenres WHERE genre_id = $1`,[id])
+
+    await pool.query("DELETE FROM genres WHERE genre_id = $1",[id])
+}
+
+const getAPlatform = async(id)=>{
+    const { rows } = await pool.query("SELECT * FROM platforms WHERE platform_id = $1",[id]);
+    return rows[0];
+}
+
+const addAPlatform = async(name)=>{
+    const platformId = uuid();
+
+    await pool.query(`INSERT INTO platforms (platform_id, platform_name)
+                      VALUES ($1, $2)`,[platformId, name])
+    return platformId;
+}
+
+const updatePlatform = async(id,name)=>{
+    await pool.query(`UPDATE platforms SET
+                      platform_name = $1 WHERE platform_id = $2`,[name, id])
+}
+
+const deleteAPlatform = async(id)=>{
+    await pool.query(`DELETE FROM gameplatforms WHERE platform_id = $1`,[id])
+
+    await pool.query("DELETE FROM platforms WHERE platform_id = $1",[id])
+}
+
 export { getAllDevelopers, getAllGenres, getAllPlatforms, getAllGames, 
          getAGame, addAGame, updateAGame, deleteAGame,
-         getADeveloper, addADeveloper, updateADeveloper, deleteDeveloper };
+         getADeveloper, addADeveloper, updateADeveloper, deleteDeveloper,
+         getAGenre, addAGenre, updateGenre, deleteAGenre,
+         getAPlatform, addAPlatform, updatePlatform, deleteAPlatform };

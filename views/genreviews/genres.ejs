@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title%></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('../navbar') %>
+    <%- include("../error.ejs") %>
+    <h2><%= genreId ? 'Edit Genre' : 'Add New Genre' %></h2>
+    <form action="<%= genreId ? '/genre/edit/' + genreId : '/genre/create' %>" method="POST">
+        <input type="text" name="name" placeholder="Genre Name" value="<%= formData ? formData.genre_name : '' %>" required>
+        <button type="submit"><%= genreId ? 'Update Genre' : 'Add Genre' %></button>
+    </form>
+    <h1>All Genres</h1>
+    <div>
+        <ul>
+            <% genres.forEach(genre => { %>
+                <li><a href="/genres"><%= genre.genre_name %></a></li>
+                <a href="/genre/edit/<%= genre.genre_id %>"><button>Edit</button></a>
+                <form action="/genre/delete/<%= genre.genre_id %>" method="POST" style="display:inline;">
+                    <button type="submit" onsubmit="return confirm('Delete this game?');">Delete</button>
+                </form>
+            <% }) %>
+            
+        </ul>
+    </div>
+    
+</body>
+</html>

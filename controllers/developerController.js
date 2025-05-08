@@ -2,6 +2,30 @@ import expressAsyncHandler from "express-async-handler";
 import { validationResult } from "express-validator";
 import { addADeveloper, deleteDeveloper, getADeveloper, getAllDevelopers, updateADeveloper } from "../db/queries.js";
 
+import { body } from "express-validator";
+
+const validateDeveloper = [
+  body("name")
+    .trim()
+    .notEmpty().withMessage("Name is required.")
+    .isLength({ max: 100 }).withMessage("Name must be under 100 characters."),
+  
+  body("country")
+    .optional({ checkFalsy: true })
+    .isLength({ max: 100 }).withMessage("Country name too long."),
+  
+  body("description")
+    .optional({ checkFalsy: true })
+    .isLength({ max: 500 }).withMessage("Description must be under 500 characters."),
+
+  body("logo_url")
+    .optional({ checkFalsy: true })
+    .isURL().withMessage("Logo URL must be a valid URL.")
+];
+
+export default validateDeveloper;
+
+
 const developerRouterGet = expressAsyncHandler(async(req, res)=>{
     const developer = await getADeveloper(req.params.developer_id);
     res.status(200).render("developerviews/developer",{
@@ -18,6 +42,7 @@ const developerRouterCreateGet = (req, res)=>{
 }
 
 const developerRouterCreatePost = [
+    validateDeveloper,
     expressAsyncHandler(async(req, res)=>{
         const errors = validationResult(req);
         if(!errors.isEmpty()){
@@ -43,6 +68,7 @@ const developerRouterEditGet = async(req, res)=>{
 }
 
 const developerRouterEditPost = [
+    validateDeveloper,
     expressAsyncHandler(async(req, res)=>{
         const developer = await getADeveloper(req.params.developer_id)
         const errors = validationResult(req);

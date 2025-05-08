@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+  <%- include('../navbar') %>
   <h1><%= developer.name %></h1>
   <img src="<%= developer.logo_url %>" alt="<%= developer.name %> logo" width="100" />
   <p><strong>Country:</strong> <%= developer.country || 'Unknown' %></p>

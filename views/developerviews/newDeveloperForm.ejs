@@ -5,30 +5,33 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+  <%- include('../navbar') %>
+  <%- include('../error')%>
   <div class="form-container">
     <h1><%= formData ? 'Edit' : 'Add' %> Developer</h1>
-  <form action="<%= developerId ? '/developer/edit/' + developerId : '/developer/create' %>" method="POST">
+    
+    <form action="<%= developerId ? '/developer/edit/' + developerId : '/developer/create' %>" method="POST">
 
-    <label>Name:
-      <input type="text" name="name" value="<%= formData ? formData.name : '' %>" required />
-    </label><br/>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" value="<%= formData ? formData.name : '' %>" required />
+      <br/>
 
-    <label>Country:
-      <input type="text" name="country" value="<%= formData ? formData.country : '' %>" />
-    </label><br/>
+      <label for="country">Country:</label>
+      <input type="text" id="country" name="country" value="<%= formData ? formData.country : '' %>" />
+      <br/>
 
-    <label>Description:
-      <textarea name="description"><%= formData ? formData.description : '' %></textarea>
-    </label><br/>
+      <label for="description">Description:</label>
+      <textarea id="description" name="description"><%= formData ? formData.description : '' %></textarea>
+      <br/>
 
-    <label>Logo URL:
-      <input type="text" name="logo_url" value="<%= formData ? formData.logo_url : '' %>" />
-    </label><br/>
+      <label for="logo_url">Logo URL:</label>
+      <input type="text" id="logo_url" name="logo_url" value="<%= formData ? formData.logo_url : '' %>" />
+      <br/>
 
-    <button type="submit"><%= formData ? 'Update' : 'Create' %> Developer</button>
-  </form>
+      <button type="submit"><%= formData ? 'Update' : 'Create' %> Developer</button>
+    </form>
 
-  <a href="/developers"><button class="btn">Back to list</button></a>
+    <a href="/developers"><button class="btn">Back to list</button></a>
   </div>
 </body>
 </html>

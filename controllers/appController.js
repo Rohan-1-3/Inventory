@@ -28,7 +28,9 @@ const appGenresGet = expressAsyncHandler(async(req, res)=>{
     const genres = await getAllGenres();
     res.status(200).render("genreviews/genres",{
         title: "Genres",
-        genres: genres
+        genres: genres,
+        genreId: null,
+        formData: req.body
     });
 });
 
