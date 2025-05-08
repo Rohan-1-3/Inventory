@@ -61,4 +61,4 @@ Developed by: [Your Name or Team Name]
 
 ## 📝 License
 
-MIT License
+[MIT License](LICENSE)
