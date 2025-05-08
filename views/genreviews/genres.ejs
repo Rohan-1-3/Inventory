@@ -9,11 +9,13 @@
 <body>
     <%- include('../navbar') %>
     <%- include("../error.ejs") %>
+
     <h2><%= genreId ? 'Edit Genre' : 'Add New Genre' %></h2>
     <form action="<%= genreId ? '/genre/edit/' + genreId : '/genre/create' %>" method="POST">
         <input type="text" name="name" placeholder="Genre Name" value="<%= formData ? formData.genre_name : '' %>" required>
         <button type="submit"><%= genreId ? 'Update Genre' : 'Add Genre' %></button>
     </form>
+    
     <h1>All Genres</h1>
     <div>
         <ul>

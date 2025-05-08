@@ -30,7 +30,7 @@ const appGenresGet = expressAsyncHandler(async(req, res)=>{
         title: "Genres",
         genres: genres,
         genreId: null,
-        formData: req.body
+        formData: null
     });
 });
 
@@ -38,7 +38,9 @@ const appPlatformsGet = expressAsyncHandler(async(req, res)=>{
     const platforms = await getAllPlatforms();
     res.status(200).render("platformviews/platforms",{
         title: "Platforms",
-        platforms: platforms
+        platforms: platforms,
+        platformId: null,
+        formData: null
     });
 });
 
