@@ -23,7 +23,9 @@
             <span class="developer-country">– <%= dev.country || 'Unknown' %></span>
           </div>
           <div class="action-buttons">
-            <a href="/developer/edit/<%= dev.developer_id %>" class="edit-btn">Edit</a>
+            <div>
+              <a href="/developer/edit/<%= dev.developer_id %>" class="edit-btn">Edit</a>
+            </div>
             <form action="/developer/delete/<%= dev.developer_id %>" method="POST" class="delete-form">
                 <button type="submit" class="delete-btn">Delete</button>
             </form>

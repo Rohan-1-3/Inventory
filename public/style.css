@@ -43,17 +43,25 @@ body {
   margin-bottom: 0.5rem;
 }
 
+/* === Developer Info Shared === */
 .developer-info {
   padding: 1rem;
   border-top: 1px solid #ddd;
-  text-align: center;
   background-color: #fff;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.developer-info h3 {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
 }
 
 .dev-logo {
-  width: 100px;
+  width: 150px;
   height: auto;
   object-fit: contain;
+  margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
 
@@ -119,17 +127,6 @@ body {
   color: #333;
 }
 
-.developer-info h3 {
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
-}
-
-.dev-logo {
-  width: 150px;
-  height: auto;
-  margin-top: 1rem;
-}
-
 /* === Buttons === */
 .action-buttons {
   display: flex;
@@ -138,21 +135,23 @@ body {
   flex-wrap: wrap;
 }
 
-.btn {
-  padding: 0.4rem 1rem;
+.btn,
+.edit-btn,
+.delete-btn {
+  padding: 0.5rem 1rem;
   font-size: 0.95rem;
   border-radius: 5px;
   font-weight: bold;
   text-decoration: none;
   display: inline-block;
-  transition: background 0.3s ease;
   border: none;
   cursor: pointer;
+  color: white;
+  transition: background 0.3s ease;
 }
 
 .edit-btn {
   background-color: #007bff;
-  color: #fff;
 }
 
 .edit-btn:hover {
@@ -161,14 +160,13 @@ body {
 
 .delete-btn {
   background-color: #dc3545;
-  color: #fff;
 }
 
 .delete-btn:hover {
   background-color: #a7282f;
 }
 
-/* navbar.css */
+/* === Navbar === */
 .navbar {
   background-color: #333;
   padding: 1rem;
@@ -225,19 +223,6 @@ body {
   gap: 1rem;
 }
 
-.btn {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border-radius: 5px;
-  color: white;
-  background-color: #007bff;
-  text-decoration: none;
-}
-
-.btn:hover {
-  background-color: #0056b3;
-}
-
 .login-btn {
   background-color: #28a745;
 }
@@ -254,6 +239,7 @@ body {
   background-color: #c82333;
 }
 
+/* === Form Styling === */
 .form-container {
   max-width: 600px;
   margin: 2rem auto;
@@ -274,7 +260,9 @@ label {
   font-weight: bold;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
   padding: 0.5rem;
   margin-top: 0.3rem;
   border: 1px solid #ccc;
@@ -283,7 +271,11 @@ input, select, textarea {
 }
 
 select[multiple] {
-  height: 120px;
+  height: 150px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  color: rebeccapurple;
 }
 
 button {
@@ -301,14 +293,7 @@ button:hover {
   background-color: #0056b3;
 }
 
-select[multiple] {
-  height: 150px;
-  width: 100%;
-  padding: 8px;
-  border-radius: 4px;
-  color: rebeccapurpled;
-}
-
+/* === Developer List View === */
 .developer-list {
   list-style: none;
   padding: 0;
@@ -328,10 +313,6 @@ select[multiple] {
   border-radius: 5px;
 }
 
-.developer-info {
-  flex-grow: 1;
-}
-
 .developer-link {
   text-decoration: none;
   color: #2c3e50;
@@ -342,25 +323,6 @@ select[multiple] {
   margin-left: 5px;
 }
 
-.edit-btn,
-.delete-btn {
-  padding: 5px 10px;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.edit-btn {
-  background-color: #2980b9;
-}
-
 .delete-form {
   margin: 0;
 }
-
-.delete-btn {
-  background-color: #c0392b;
-}
-
